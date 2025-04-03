@@ -20,8 +20,9 @@ public class Shelf {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String shelfID;
     private String drinkName;
-    private int quantity;
     private int price;
+    private int quantity;
+
 
     public Shelf(String shelfID, String drinkName, int price) {
         this.shelfID = shelfID;

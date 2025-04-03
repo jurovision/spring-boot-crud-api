@@ -19,7 +19,7 @@ public class SpringBootCrudApiApplication {
 
     public static void main(String[] args) {
 
-
+        // Instanz erzeugen
         VendingMachine newVendingMachine;
         try {
             newVendingMachine = new VendingMachine();
@@ -29,19 +29,20 @@ public class SpringBootCrudApiApplication {
             return;
         }
 
+        // Maschine mit Münzen befüllen
         Coins coins = new Coins();
         coins.setTenCentCoins(10);
         coins.setTwentyCentCoins(10);
         coins.setFiftyCentCoins(10);
         coins.setOneEuroCoins(10);
         coins.setTwoEuroCoins(10);
-
-        // Shelf shelf = new Shelf("A1", "Kaffee", 200);
-
         newVendingMachine.setCoins(coins);
-        newVendingMachine.updateShelfContent("01", "Coke", 150, 15); 
+
+        // Maschine befüllen
+        newVendingMachine.updateShelfContent("01", "Coke", 150, 10); 
         newVendingMachine.updateShelfContent("A4", "Kaffee", 150, 10); 
         newVendingMachine.logContent();
+
         
         SpringApplication.run(SpringBootCrudApiApplication.class, args);
     }
