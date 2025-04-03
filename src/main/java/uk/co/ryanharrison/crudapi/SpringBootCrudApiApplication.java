@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import uk.co.ryanharrison.crudapi.model.Product;
+import uk.co.ryanharrison.crudapi.model.Coins;
+import uk.co.ryanharrison.crudapi.repository.CoinsRepository;
 import uk.co.ryanharrison.crudapi.repository.ProductRepository;
 
 import java.time.LocalDateTime;
@@ -17,7 +19,7 @@ public class SpringBootCrudApiApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(ProductRepository productRepository) {
+    CommandLineRunner commandLineRunner(ProductRepository productRepository, CoinsRepository coinsRepository) {
         return args -> {
             productRepository.save(Product.builder()
                     .name("product1")
@@ -36,6 +38,13 @@ public class SpringBootCrudApiApplication {
                     .type("widget")
                     .createdBy("bob")
                     .createdAt(LocalDateTime.now())
+                    .build());
+            coinsRepository.save(Coins.builder()
+                    .tenCentCoins(15)
+                    .twentyCentCoins(15)
+                    .fiftyCentCoins(15)
+                    .oneEuroCoins(15)
+                    .twoEuroCoins(15)
                     .build());
         };
     }
