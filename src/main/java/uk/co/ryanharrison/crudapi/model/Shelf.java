@@ -22,14 +22,13 @@ public class Shelf {
     private String drinkName;
     private int quantity;
     private int price;
-    // TODO private int maxquantity?
 
     public Shelf(String shelfID, String drinkName, int price) {
         this.shelfID = shelfID;
         this.drinkName = drinkName;
         this.price = price;
+        // TODO wahrscheinlich weg
         quantity = 10;
-
     }
 
     public String getShelfID() {
