@@ -57,17 +57,10 @@ public class VendingMachineTest {
         // Shelf shelf = new Shelf("A1", "Kaffee", 200);
 
         this.newVendingMachine.setCoins(coins);
-        this.newVendingMachine.updateShelfContent("01", "Coke", 150, 10); 
-        this.newVendingMachine.updateShelfContent("A4", "Kaffee", 150, 10); 
+        this.newVendingMachine.updateShelfContent("01", "Club Mate", 150, 10); 
+        this.newVendingMachine.updateShelfContent("02", "Coffee", 150, 10); 
+        this.newVendingMachine.updateShelfContent("03", "Dubai Chocolate drink ", 1490, 10); 
         this.newVendingMachine.logContent();
-
-        // Wechselgeld prüfen
-        // this.purchaseCoins = new Coins();
-        // purchaseCoins.setTenCentCoins(0);
-        // purchaseCoins.setTwentyCentCoins(0);
-        // purchaseCoins.setFiftyCentCoins(1);
-        // purchaseCoins.setOneEuroCoins(1);
-        // purchaseCoins.setTwoEuroCoins(0);
 
     }
 
@@ -91,6 +84,17 @@ public class VendingMachineTest {
         purchaseCoins.setOneEuroCoins(1);
         purchaseCoins.setTwoEuroCoins(0);
         assertThat(newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins)).isTrue();
+    }
+
+    @Test
+    void buyExpensiveDrinkSuccessfully() {
+        purchaseCoins = new Coins();
+        purchaseCoins.setTenCentCoins(0);
+        purchaseCoins.setTwentyCentCoins(0);
+        purchaseCoins.setFiftyCentCoins(10);
+        purchaseCoins.setOneEuroCoins(6);
+        purchaseCoins.setTwoEuroCoins(2);
+        assertThat(newVendingMachine.removeDrinkWithSuccess("03", purchaseCoins)).isTrue();
     }
 
 

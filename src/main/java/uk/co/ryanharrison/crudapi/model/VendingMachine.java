@@ -44,7 +44,7 @@ public class VendingMachine {
         for( Map.Entry<String,Shelf> entry : shelves.entrySet()){
             String key = entry.getKey();
             Shelf value = entry.getValue();
-            System.out.println(">>>>>>>> SHELF CONTENTS ARE " + value.toString());
+            System.out.println("-------- SHELF CONTENTS ARE " + value.toString());
         }
     }
 
@@ -107,32 +107,12 @@ public class VendingMachine {
                         }
                     }
 
-
-                    // if (openChange >= 200 && machineCoins.getTwoEuroCoins() > 0){
-                    //     changeCoins.setTwoEuroCoins(changeCoins.getTwoEuroCoins() + 1);
-                    //     machineCoins.setTwoEuroCoins(machineCoins.getTwoEuroCoins() - 1);
-                    //     openChange -= 200;
-                    // } else if (openChange >= 100 && machineCoins.getOneEuroCoins() > 0){
-                    //     changeCoins.setOneEuroCoins(changeCoins.getOneEuroCoins() + 1);
-                    //     machineCoins.setOneEuroCoins(machineCoins.getOneEuroCoins() - 1);
-                    //     openChange -= 100;
-                    // } else if (openChange >= 50 && machineCoins.getFiftyCentCoins() > 0){
-                    //     changeCoins.setFiftyCentCoins(changeCoins.getFiftyCentCoins() + 1);
-                    //     machineCoins.setFiftyCentCoins(machineCoins.getFiftyCentCoins() - 1);
-                    //     openChange -= 50;
-                    // } else if (openChange >= 20 && machineCoins.getTwentyCentCoins() > 0){
-                    //     changeCoins.setTwentyCentCoins(changeCoins.getTwentyCentCoins() + 1);
-                    //     machineCoins.setTwentyCentCoins(machineCoins.getTwentyCentCoins() - 1);
-                    //     openChange -= 20;
-                    // } else if (openChange >= 10 && machineCoins.getTenCentCoins() > 0){
-                    //     changeCoins.setTenCentCoins(changeCoins.getTenCentCoins() + 1);
-                    //     machineCoins.setTenCentCoins(machineCoins.getTenCentCoins() - 1);
-                    //     openChange -= 10;
                     break;
                     }
                     if (openChange == 0){
+
                         shelf.decreaseQuantity();
-                        System.out.println("SUCCESS");
+                        System.out.println(">>>>>>>>>> Enjoy your " + shelf.getDrinkName() + " drink! You gave " + (totalCoinsValue * 0.01) + " Euro and the drink cost was " + (drinkPrice * 0.01) + " Euro. Your change is: " + changeCoins.toString());
                         return true;
                 }
             }
