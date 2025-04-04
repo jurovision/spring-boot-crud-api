@@ -56,6 +56,17 @@ public class VendingMachineTest {
     }
 
     @Test
+    void buyDrinkSuccessfully() {
+        purchaseCoins = new Coins();
+        purchaseCoins.setTenCentCoins(0);
+        purchaseCoins.setTwentyCentCoins(0);
+        purchaseCoins.setFiftyCentCoins(0);
+        purchaseCoins.setOneEuroCoins(0);
+        purchaseCoins.setTwoEuroCoins(1);
+        assertThat(newVendingMachine.removeDrinkWithSuccess("02", purchaseCoins)).isTrue();
+    }
+
+    @Test
     void purchaseWithWayTooManyCoinsShouldFail() {
         purchaseCoins = new Coins();
         purchaseCoins.setTenCentCoins(0);
