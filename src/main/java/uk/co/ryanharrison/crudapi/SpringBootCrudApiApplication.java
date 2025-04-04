@@ -1,5 +1,4 @@
 package uk.co.ryanharrison.crudapi;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import uk.co.ryanharrison.crudapi.model.VendingMachine;
 import uk.co.ryanharrison.crudapi.model.Coins;
@@ -10,8 +9,8 @@ public class SpringBootCrudApiApplication {
     public static void main(String[] args) {
 
         // Instanz erzeugen
-        VendingMachine newVendingMachine;
-            newVendingMachine = new VendingMachine();
+        VendingMachine newVendingMachine = new VendingMachine();
+        newVendingMachine.setLocation("Cottbus Landesmuseum");
 
         // Maschine mit Münzen befüllen
         Coins coins = new Coins();

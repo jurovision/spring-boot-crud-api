@@ -1,5 +1,4 @@
 package uk.co.ryanharrison.crudapi.model;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -37,15 +36,14 @@ public class VendingMachine {
         return machineCoins;
     }
 
-    // TODO: Änndern in "Stock"
+    // Methode zum komplett neu Befüllen oder Entleeren
     public void updateShelfContent(String shelfID, String drinkName, int price, int quantity) {
             if (availableShelfs.contains(shelfID) && quantity <= shelfSize){
                 Shelf currentShelf = new Shelf(shelfID, drinkName, price, quantity);
                 shelves.put(shelfID, currentShelf);
             }
-            // Exception
             else {
-                System.out.println("ERROR INVALID SHELF ID OR QUANTITY EXCEEDED");
+                System.out.println("ERROR! INVALID SHELF ID OR QUANTITY EXCEEDED");
             }
     }
 
@@ -58,9 +56,11 @@ public class VendingMachine {
     }
 
     public boolean removeDrinkWithSuccess(String shelfID, Coins purChaseCoins){
+        // Gültiges Regal prüfen
         if (shelves.containsKey(shelfID)) {
             Shelf shelf = shelves.get(shelfID);
 
+            // Menge Getränk prüfen
             if (shelf.getQuantity() > 0){
                 Coins changeCoins = new Coins();
                 Coins tempChangeCalculationCoins = machineCoins;
@@ -68,8 +68,9 @@ public class VendingMachine {
                 int drinkPrice = shelf.getPrice();
                 int openChange =  totalCoinsValue - drinkPrice;
 
-                // WECHSELSGELD
+                // Prüfen, ob passendes Wechselgeld vorhanden und genug Geld eingeworfen
                 while (openChange >= 0){
+                    // Wechselgeld und temporäre Maschinenmünzen ausrechnen
                     while (openChange % 200 != openChange && openChange > 0){
                         if (tempChangeCalculationCoins.getTwoEuroCoins() > 0){
                             tempChangeCalculationCoins.setTwoEuroCoins(tempChangeCalculationCoins.getTwoEuroCoins() - 1);
@@ -119,26 +120,31 @@ public class VendingMachine {
 
                     break;
                     }
+
+                    // Wenn Zahlbetrag und Wechselgeld passen: Kauf erfolgreich abschließen
                     if (openChange == 0){
-                        // gezahlte Münzen der Macshine hinzufügen
+
+                        // Ausgabe verfassen
+                        shelf.decreaseQuantity();
+
+                        // Ausgabe Wechselgeld erfassen
                         machineCoins = tempChangeCalculationCoins;
 
+                        // gezahlte Münzen der Maschine hinzufügen
                         machineCoins.setTenCentCoins(machineCoins.getTenCentCoins() + purChaseCoins.getTenCentCoins());
                         machineCoins.setTwentyCentCoins(machineCoins.getTwentyCentCoins() + purChaseCoins.getTwentyCentCoins());
                         machineCoins.setFiftyCentCoins(machineCoins.getFiftyCentCoins() + purChaseCoins.getFiftyCentCoins());
                         machineCoins.setOneEuroCoins(machineCoins.getOneEuroCoins() + purChaseCoins.getOneEuroCoins());
                         machineCoins.setTwoEuroCoins(machineCoins.getTwoEuroCoins() + purChaseCoins.getTwoEuroCoins());
 
-                        shelf.decreaseQuantity();
-                        System.out.println(">>>>>>>>>> Enjoy your " + shelf.getDrinkName() + " drink! You gave " + 
+                        System.out.println(">>>>>>>>>> Enjoy your " + shelf.getDrinkName() + " drink! :) You gave " + 
                         (totalCoinsValue * 0.01) + " Euro and the drink cost was " + (drinkPrice * 0.01) + " Euro. Your change is: " + changeCoins.toString());
                         return true;
                 }
             }
-
-                
         }
-        System.out.println("FAIL");
+        // Kauf nicht erfolgreich
+        System.out.println(">>>>>>>>>> Purchase failure :( Possible reasons: not enough money thrown in, not enough change coins, empty shelf or invalid shelf number");
         return false;
     }
 

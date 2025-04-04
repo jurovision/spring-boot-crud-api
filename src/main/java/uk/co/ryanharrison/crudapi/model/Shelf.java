@@ -1,5 +1,4 @@
 package uk.co.ryanharrison.crudapi.model;
-
 import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Shelf {

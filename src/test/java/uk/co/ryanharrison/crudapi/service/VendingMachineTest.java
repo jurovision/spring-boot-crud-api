@@ -1,13 +1,10 @@
 package uk.co.ryanharrison.crudapi.service;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import uk.co.ryanharrison.crudapi.model.Coins;
 import uk.co.ryanharrison.crudapi.model.VendingMachine;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @AutoConfigureMockMvc
@@ -37,17 +34,6 @@ public class VendingMachineTest {
     }
 
     @Test
-    void tryPurchaseWithWayTooManyCoins() {
-        purchaseCoins = new Coins();
-        purchaseCoins.setTenCentCoins(0);
-        purchaseCoins.setTwentyCentCoins(0);
-        purchaseCoins.setFiftyCentCoins(1);
-        purchaseCoins.setOneEuroCoins(1);
-        purchaseCoins.setTwoEuroCoins(200);
-        assertThat(newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins)).isFalse();
-    }
-
-    @Test
     void tryPurchaseWithExactlyFittingAmount() {
         purchaseCoins = new Coins();
         purchaseCoins.setTenCentCoins(0);
@@ -67,6 +53,53 @@ public class VendingMachineTest {
         purchaseCoins.setOneEuroCoins(6);
         purchaseCoins.setTwoEuroCoins(2);
         assertThat(newVendingMachine.removeDrinkWithSuccess("03", purchaseCoins)).isTrue();
+    }
+
+    @Test
+    void purchaseWithWayTooManyCoinsShouldFail() {
+        purchaseCoins = new Coins();
+        purchaseCoins.setTenCentCoins(0);
+        purchaseCoins.setTwentyCentCoins(0);
+        purchaseCoins.setFiftyCentCoins(1);
+        purchaseCoins.setOneEuroCoins(1);
+        purchaseCoins.setTwoEuroCoins(200);
+        assertThat(newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins)).isFalse();
+    }
+
+    @Test
+    void tryPurchaseWithTooFewCoinsShouldFail() {
+        purchaseCoins = new Coins();
+        purchaseCoins.setTenCentCoins(0);
+        purchaseCoins.setTwentyCentCoins(0);
+        purchaseCoins.setFiftyCentCoins(1);
+        purchaseCoins.setOneEuroCoins(0);
+        purchaseCoins.setTwoEuroCoins(0);
+        assertThat(newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins)).isFalse();
+    }
+
+    @Test
+    void buingElevenMateShouldFail() {
+
+        purchaseCoins = new Coins();
+        purchaseCoins.setTenCentCoins(0);
+        purchaseCoins.setTwentyCentCoins(0);
+        purchaseCoins.setFiftyCentCoins(11);
+        purchaseCoins.setOneEuroCoins(11);
+        purchaseCoins.setTwoEuroCoins(0);
+
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+
+
+        assertThat(newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins)).isFalse();
     }
 
     @Test
