@@ -58,7 +58,7 @@ public class VendingMachineTest {
 
         this.newVendingMachine.setCoins(coins);
         this.newVendingMachine.updateShelfContent("01", "Club Mate", 150, 10); 
-        this.newVendingMachine.updateShelfContent("02", "Coffee", 150, 10); 
+        this.newVendingMachine.updateShelfContent("02", "Coffee", 90, 10); 
         this.newVendingMachine.updateShelfContent("03", "Dubai Chocolate drink ", 1490, 10); 
         this.newVendingMachine.logContent();
 
@@ -97,6 +97,21 @@ public class VendingMachineTest {
         assertThat(newVendingMachine.removeDrinkWithSuccess("03", purchaseCoins)).isTrue();
     }
 
-
+    @Test
+    void checkMachineCoinCalculation() {
+        purchaseCoins = new Coins();
+        purchaseCoins.setTenCentCoins(0);
+        purchaseCoins.setTwentyCentCoins(0);
+        purchaseCoins.setFiftyCentCoins(0);
+        purchaseCoins.setOneEuroCoins(0);
+        purchaseCoins.setTwoEuroCoins(1);
+        newVendingMachine.removeDrinkWithSuccess("01", purchaseCoins);
+        int machineTwoEuroCoins = newVendingMachine.getCoins().getTwoEuroCoins();
+        int machineFiftyCentCoins = newVendingMachine.getCoins().getFiftyCentCoins();
+        boolean twoEuroCoinsAreCorrect = machineTwoEuroCoins == 11;
+        boolean fiftyCentCoinsAreCorrect = machineFiftyCentCoins == 9;
+        assertThat(twoEuroCoinsAreCorrect).isTrue();
+        assertThat(fiftyCentCoinsAreCorrect).isTrue();
+    }
 
 }
