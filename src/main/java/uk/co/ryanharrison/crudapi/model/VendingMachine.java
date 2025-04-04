@@ -1,18 +1,12 @@
 package uk.co.ryanharrison.crudapi.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import uk.co.ryanharrison.crudapi.model.Shelf;
-
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-
 
 public class VendingMachine {
     private Map<String, Shelf> shelves = new LinkedHashMap<>();
-    public Coins machineCoins;
+    private Coins machineCoins;
     private String availableShelfs = "01 02 03 04 05 06 07 08 09 10";
     private int shelfSize = 10;
 

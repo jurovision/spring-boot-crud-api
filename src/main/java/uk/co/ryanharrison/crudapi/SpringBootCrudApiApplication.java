@@ -1,16 +1,9 @@
 package uk.co.ryanharrison.crudapi;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import uk.co.ryanharrison.crudapi.model.Shelf;
 import uk.co.ryanharrison.crudapi.model.VendingMachine;
 import uk.co.ryanharrison.crudapi.model.Coins;
-import uk.co.ryanharrison.crudapi.repository.CoinsRepository;
-
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class SpringBootCrudApiApplication {
