@@ -1,9 +1,5 @@
 package uk.co.ryanharrison.crudapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,11 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@Entity
 public class Shelf {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String shelfID;
     private String drinkName;
     private int price;
