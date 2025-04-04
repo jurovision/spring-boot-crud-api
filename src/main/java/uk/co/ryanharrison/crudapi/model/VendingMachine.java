@@ -31,8 +31,6 @@ public class VendingMachine {
 
     public void setCoins (Coins coins){
         this.machineCoins = coins;
-        // TODO: Löschen
-        System.out.println(">>>>>>>> COINS ARE " + coins.toString());
     }
 
     public Coins getCoins (){
