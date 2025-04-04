@@ -13,11 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import uk.co.ryanharrison.crudapi.model.Coins;
-import uk.co.ryanharrison.crudapi.model.Product;
-import uk.co.ryanharrison.crudapi.model.ProductFilter;
 import uk.co.ryanharrison.crudapi.model.VendingMachine;
-import uk.co.ryanharrison.crudapi.service.ProductService;
-import uk.co.ryanharrison.crudapi.util.JsonUtils;
 
 import java.io.IOException;
 import java.util.List;
