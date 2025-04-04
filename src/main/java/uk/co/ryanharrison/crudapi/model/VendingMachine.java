@@ -1,20 +1,32 @@
 package uk.co.ryanharrison.crudapi.model;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class VendingMachine {
+    
+    private UUID id = UUID.randomUUID();
+    private String location;
     private Map<String, Shelf> shelves = new LinkedHashMap<>();
     private Coins machineCoins;
     private String availableShelfs = "01 02 03 04 05 06 07 08 09 10";
     private int shelfSize = 10;
 
+    public UUID getId() {
+        return this.id;
+    }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
+    public String getLocation() {
+        return this.location;
+    }
 
-    public VendingMachine() throws IOException {
-    // updateShelfContent("A1", "Coke", 150); 
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setCoins (Coins coins){

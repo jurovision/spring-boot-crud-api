@@ -16,15 +16,6 @@ public class Shelf {
     private int price;
     private int quantity;
 
-
-    public Shelf(String shelfID, String drinkName, int price) {
-        this.shelfID = shelfID;
-        this.drinkName = drinkName;
-        this.price = price;
-        // TODO wahrscheinlich weg
-        quantity = 10;
-    }
-
     public String getShelfID() {
         return this.shelfID;
     }

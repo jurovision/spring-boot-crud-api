@@ -1,6 +1,5 @@
 package uk.co.ryanharrison.crudapi.model;
 
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

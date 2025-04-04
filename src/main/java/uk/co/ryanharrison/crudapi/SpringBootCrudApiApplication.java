@@ -3,7 +3,6 @@ package uk.co.ryanharrison.crudapi;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import uk.co.ryanharrison.crudapi.model.VendingMachine;
 import uk.co.ryanharrison.crudapi.model.Coins;
-import java.io.IOException;
 
 @SpringBootApplication
 public class SpringBootCrudApiApplication {
@@ -12,13 +11,7 @@ public class SpringBootCrudApiApplication {
 
         // Instanz erzeugen
         VendingMachine newVendingMachine;
-        try {
             newVendingMachine = new VendingMachine();
-        } catch (IOException e) {
-            System.out.println("Error while trying to write the machine log. " +
-                    "Please try loading the Vendo-Mazing 666 again.");
-            return;
-        }
 
         // Maschine mit Münzen befüllen
         Coins coins = new Coins();

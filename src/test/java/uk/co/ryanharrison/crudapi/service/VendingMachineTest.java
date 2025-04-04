@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import uk.co.ryanharrison.crudapi.model.Coins;
 import uk.co.ryanharrison.crudapi.model.VendingMachine;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @AutoConfigureMockMvc
@@ -21,13 +19,7 @@ public class VendingMachineTest {
 
     @BeforeEach
     void setUp() {
-        try {
             this.newVendingMachine = new VendingMachine();
-        } catch (IOException e) {
-            System.out.println("Error while trying to write the machine log. " +
-                    "Please try loading the Vendo-Mazing 666 again.");
-            return;
-        }
 
         Coins coins = new Coins();
         coins.setTenCentCoins(10);
@@ -35,8 +27,6 @@ public class VendingMachineTest {
         coins.setFiftyCentCoins(10);
         coins.setOneEuroCoins(10);
         coins.setTwoEuroCoins(10);
-
-        // Shelf shelf = new Shelf("A1", "Kaffee", 200);
 
         this.newVendingMachine.setCoins(coins);
         this.newVendingMachine.updateShelfContent("01", "Club Mate", 150, 10); 
