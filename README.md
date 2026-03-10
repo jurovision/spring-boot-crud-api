@@ -1,5 +1,5 @@
 
-# Getränkeautomat Justus Zürch
+# Getränkeautomat Aufgabe
 
 Ich freue mich, die Aufgabe abzugeben. Die Zeit saß mir merklich im Nacken. Was hätte ich mit mehr Zeit gerne noch gemacht?
 - CRUD Funktionen für den Automaten hinzugefügt
